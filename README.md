@@ -5,4 +5,4 @@ https://reactjs.org/tutorial/tutorial.html
 
 Current pos:
 
-Lifting state up
+Declaring a winner

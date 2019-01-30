@@ -17,25 +17,16 @@ class HelloReactComponent extends Component {
     }
   }
 
-  class Square extends Component {
+  // It's a function-component
+  function Square(props) {
+    return (
+      <button 
+          className="square" 
+          onClick={props.onClick}>
+            {props.value}
+      </button>
+    );
 
-    constructor(props) {
-        super(props);
-
-        this.state = {value: null};
-    }
-
-    render() {
-      return (
-        <button 
-        className="square" 
-        onClick={() => this.props.onClick()}>
-
-          {this.props.value}
-
-        </button>
-      );
-    }
   }
   
   class Board extends Component {
@@ -45,16 +36,24 @@ class HelloReactComponent extends Component {
       super(props);
 
       this.state = { 
-        squares : Array(9).fill(null)  
+        squares : Array(9).fill(null),
+        xIsNext : true
       };
       
     }
 
 
     handleClick(c) {
+      
+      // here we create copy of an existing array
       const squares = this.state.squares.slice();
-      squares[c] = 'X';
-      this.setState({squares : squares});
+      
+      squares[c] = this.state.xIsNext ? 'X' : 'O';
+
+      this.setState({
+        squares : squares,
+        xIsNext : !this.state.xIsNext
+      });
     }
 
 
@@ -67,7 +66,7 @@ class HelloReactComponent extends Component {
     }
   
     render() {
-      const status = 'Next player: X';
+      const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
   
       return (
         <div>
