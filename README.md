@@ -5,4 +5,4 @@ https://reactjs.org/tutorial/tutorial.html
 
 Current pos:
 
-Declaring a winner
+Showing the Past Moves
