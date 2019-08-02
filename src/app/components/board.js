@@ -4,34 +4,39 @@ import Square from "./square";
 
 export default class Board extends Component {
 
-    renderSquare(c) {
-      return (
-      <Square 
-        value={this.props.squares[c]} 
-        onClick={() => this.props.onClick(c) } />
-      );
+    constructor(props) {
+      super (props);
+      console.log("Initializing board " + props.cols + " x " + props.rows);
     }
   
     render() {
+      
+      let currentSquare = 0;
+      let boardRows = [];
+
+      for (let i=0; i<this.props.rows; i++) {
+        
+        let boardCols = [];
+
+        for (let j=0; j<this.props.cols; j++) {
+          boardCols.push(
+            <Square value={this.props.squares[currentSquare]} num={currentSquare} onClick={() => this.props.onClick(currentSquare) } />
+          );
+          currentSquare++;
+        }
+
+        boardRows.push(
+          <div className={"board-row row-" + i}>
+            {boardCols}    
+          </div>
+        );
+      }
 
       return (
         <div>
-          <div className="board-row">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
-          </div>
+          {boardRows}
         </div>
       );
+     
     }
   }

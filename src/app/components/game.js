@@ -51,18 +51,25 @@ export default class Game extends React.Component {
     }
 
     render() {
-
+      
+      console.log("Game.Render");
+      
       const history = this.state.history;
       const current  = history[this.state.stepNumber];
       const winner = calculateWinner(current.squares);
 
       const moves = history.map((step, move) => {
+
+        console.log("Render move "  + move + " is curr: " + (this.state.stepNumber == move));
         const description = move ?
-          'Go to move #' + move + "(" + step.filledSqare + ")" :
+          'Go to move #' + move + "(" + step.filledSqare.col + ","+ step.filledSqare.row + ")" :
           'Go to game start';
+        
+        
+
         return (
           <li key={move}>
-            <button onClick={() => this.jumpTo(move)}>{description}</button>
+            <button className={(this.state.stepNumber == move) ? "activeState" : ""} onClick={() => this.jumpTo(move)}>{description}</button>
           </li>
         );
       });
@@ -80,7 +87,7 @@ export default class Game extends React.Component {
         
         <div className="game">
           <div className="game-board">
-            <Board squares={current.squares} onClick={ (i) => this.handleClick(i) } />
+            <Board cols="3" rows="3" squares={current.squares} onClick={ (i) => this.handleClick(i) } />
           </div>
           <div className="game-info">
             <div>{status}</div>

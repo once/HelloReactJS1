@@ -6,7 +6,7 @@ import React, { Component } from 'react';
       <button 
           className="square" 
           onClick={props.onClick}>
-            {props.value}
+            {props.value} <span className="square-num">{props.num}</span>
       </button>
     );
 

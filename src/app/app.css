@@ -32,6 +32,11 @@ body {
     width: 34px;
   }
   
+  .square-num {
+    font-weight: normal;
+    font-size: 0.5em;
+  }
+
   .square:focus {
     outline: none;
   }
@@ -49,3 +54,6 @@ body {
     margin-left: 20px;
   }
   
+  .activeState { 
+    font-weight: bold;
+  }
