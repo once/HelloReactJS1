@@ -20,13 +20,25 @@ export default class Board extends Component {
 
         for (let j=0; j<this.props.cols; j++) {
           boardCols.push(
-            <Square value={this.props.squares[currentSquare]} num={currentSquare} onClick={() => this.props.onClick(currentSquare) } />
+            <Square 
+              key={currentSquare}
+              value={this.props.squares[currentSquare]} 
+              num={currentSquare} 
+              onClick={
+                
+                (function(squareIndex, that) { return function() {
+                  console.log("Call onClick for currentSquare=" + squareIndex); 
+                  that.props.onClick(squareIndex); 
+                }})(currentSquare, this)
+                
+              } 
+            />
           );
           currentSquare++;
         }
 
         boardRows.push(
-          <div className={"board-row row-" + i}>
+          <div key={i} className={"board-row row-" + i}>
             {boardCols}    
           </div>
         );

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack -d && copy src\\index.html dist\\index.html && webpack-dev-server --content-base src\\ --port 8081 --inline --hot",
+    "start": "webpack --debug --devtool eval-source-map --output-pathinfo && copy src\\index.html dist\\index.html && webpack-dev-server --content-base src\\ --port 8081 --inline --hot",
     "build": "webpack"
   },
   "author": "",
@@ -22,6 +22,7 @@
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
+    "babel-plugin-add-react-displayname": "0.0.5",
     "npm": "^6.10.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
